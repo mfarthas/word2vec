@@ -21,7 +21,9 @@ if __name__ == "__main__":
     W_in, W_out, word2idx, idx2word = train(epochs=3)
     save_embeddings(W_in, W_out, word2idx, idx2word)
 
-    # load saved embeddings (comment out the 2 lines above)
+    # load saved embeddings (comment out the 2 lines above
+    # and save_embeddings()) and uncomment 5 lines below
+    #
     # W_in = np.load('embeddings/W_in.npy')
     # W_out = np.load('embeddings/W_out.npy')
     # word2idx = np.load('embeddings/word2idx.npy', allow_pickle=True).item()
@@ -29,7 +31,7 @@ if __name__ == "__main__":
 
     run_evaluation(W_in, word2idx, idx2word)
 
-    answer = input("\n t-SNE visualization? [Y/n]: ").strip().lower()
+    answer = input("\nRun t-SNE visualization? [Y/n]: ").strip().lower()
     if answer in ("", "y", "yes"):
         reduced = reduce_to_3d(W_in, n_words=2000)
         plot_3d(reduced, idx2word)
