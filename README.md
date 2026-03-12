@@ -8,6 +8,7 @@ python word2vec.py                        # full corpus (10M chars)
 python word2vec.py --corpus-size 1000000  # smaller corpus for quick runs
 ```
 Recommended corpus size range 1.000.000 - 10.000.000 characters
+
 Downloads ~30MB of training data (text8) on first run.
 
 ## How it works
