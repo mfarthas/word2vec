@@ -26,13 +26,14 @@ def train(
     window_size: int = 5,
     k: int = 5,
     lr_start: float = 0.025,
-    lr_min: float = 0.0001
+    lr_min: float = 0.0001,
+    corpus_size: int = 10_000_000
 ):
     display.training_header(
         epochs, embed_dim, window_size, k, lr_start, lr_min
     )
 
-    tokens = load_corpus()
+    tokens = load_corpus(max_chars=corpus_size)
     word2idx, idx2word, counts = build_vocab(tokens)
     indices = tokens_to_indices(tokens, word2idx)
     display.corpus_loaded(len(tokens), len(word2idx))

@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import os
 import display
@@ -18,10 +19,20 @@ def save_embeddings(W_in, W_out, word2idx, idx2word):
 
 if __name__ == "__main__":
 
-    W_in, W_out, word2idx, idx2word = train(epochs=3)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--corpus-size", type=int, default=10_000_000,
+        help="Max characters to read from text8 (default: 10_000_000)"
+    )
+    args = parser.parse_args()
+    if args.corpus_size <= 0:
+        parser.error("--corpus-size must be a positive integer")
+
+    W_in, W_out, word2idx, idx2word = train(epochs=3,
+                                            corpus_size=args.corpus_size)
     save_embeddings(W_in, W_out, word2idx, idx2word)
 
-    # load saved embeddings (comment out the 2 lines above
+    # load saved embeddings (comment out the 3 lines above
     # and save_embeddings()) and uncomment 5 lines below
     #
     # W_in = np.load('embeddings/W_in.npy')
